@@ -29,14 +29,10 @@ function returnMovies(url){
             const title = document.createElement('h3');
             title.setAttribute('id', 'title');
 
-            // const center = document.createElement('center');
-
-            // title.innerHTML = `${element.title}`;
             title.innerHTML = element.title || element.name || "No title available";
 
             image.src = IMG_PATH + element.poster_path;
         
-            // center.appendChild(image)
             div_card.appendChild(image);
             div_card.appendChild(title);
             div_column.appendChild(div_card);
