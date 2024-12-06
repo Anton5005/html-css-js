@@ -1,3 +1,4 @@
+// https://developer.themoviedb.org/reference/genre-movie-list
 const APILINK = '';
 const IMG_PATH = '';
 const SEARCHAPI = '';
