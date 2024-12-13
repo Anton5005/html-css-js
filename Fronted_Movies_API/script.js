@@ -1,7 +1,14 @@
 // https://developer.themoviedb.org/reference/genre-movie-list
-const APILINK = '';
-const IMG_PATH = '';
-const SEARCHAPI = '';
+
+const APILINK = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c3ce49a65bb4d258153a73d044d91f57&page=1';
+const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
+const SEARCHAPI = 'https://api.themoviedb.org/3/search/movie?&api_key=c3ce49a65bb4d258153a73d044d91f57&query="';
+
+
+
+// const APILINK = '';
+// const IMG_PATH = '';
+// const SEARCHAPI = '';
 
 const main = document.getElementById("section")
 const form = document.getElementById("form")
