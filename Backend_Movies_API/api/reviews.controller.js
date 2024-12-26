@@ -1,3 +1,4 @@
+import { json } from "express"
 import ReviewsDAO from "../dao/reviews/DAO.js"
 
 export default class ReviewsController {
@@ -18,7 +19,7 @@ export default class ReviewsController {
         }
     }
 
-    static async apiGetReviews(reg, res, next) {
+    static async apiGetReview(reg, res, next) {
         try {
             let id = req.params.id || {}
             let review = await reviewsDAO.getReview(id)
@@ -44,13 +45,53 @@ export default class ReviewsController {
                 user,
                 review
             )
+
+            var {error} = reviewResponse
+            if (error) {
+                res.status(400).json({error})
+            }
+
+            if (reviewResponse.modifiedCount === 0){
+                throw new Error(
+                    "unable to update review",
+                )
+            }
+
+            res.json({status: "success"})
+        } catch (e) {
+            res.status(500).json({error: e.message})
         }
     }
 
+    static async apiDeleteReview(req, res, next){
+        try {
+            const reviewId = req.params.id
+            const reviewRResponce = await ReviewsDAO.deleteReview(reviewId)
+            res.json({status: 'success'})
+        } catch (e) {
+            res.status(500).json({error: e.message})
+        }
+    }
 
-
+    static async apiGetReviews(reg, res, next) {
+        try {
+            let id = req.params.id || {}
+            let reviews = await reviewsDAO.getReviewsByMovieId(id)
+            if (!reviews) {
+                res.status(404).json({error: "Not found"})
+                return
+        }
+        res.json(reviews)
+        } catch (e) {
+            console.log(`api, ${e}`)
+            res.status(500).json({error: e})
+        }
+    }
 
 }
+
+
+
 
 
 
