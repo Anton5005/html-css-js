@@ -4,7 +4,7 @@ const APILINK = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.
 const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
 const SEARCHAPI = 'https://api.themoviedb.org/3/search/movie?&api_key=c3ce49a65bb4d258153a73d044d91f57&query="';
 
-
+ 
 
 // const APILINK = '';
 // const IMG_PATH = '';
