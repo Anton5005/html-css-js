@@ -1,5 +1,6 @@
 import mongodb from "mongodb"
-const ObjectId = mongodb.ObjectID
+const ObjectId = mongodb.ObjectId
+// import { ObjectId } from "mongodb";
 
 let reviews
 
@@ -15,6 +16,7 @@ export default class ReviewsDAO {
         }
     }
 
+    // $ curl -X POST http://localhost:8000/api/v1/reviews/new -H "Content-Type: application/json" -d '{"movieId": 15, "user": "Arnold", "review": "ideal"}'
     static async addReview(movieId, user, review) {
         try {
             const reviewDoc = {
@@ -30,22 +32,25 @@ export default class ReviewsDAO {
         }
     }
 
+    // $ curl -X GET http://localhost:8000/api/v1/reviews/676ded46f0760b0e2cf84453
     static async getReview(reviewId) {
         try {
-            return await reviews.findOne({_id: ObjectId(reviewId)})
+            return await reviews.findOne({_id: new ObjectId(reviewId)})
         } catch (e) {
             console.error(`Unable to get review: ${e}`)
             return {error: e}
         }
     }
 
-    static async updatReview(reviewId, user, review) {
+    // $ curl -X PUT http://localhost:8000/api/v1/reviews/676ded46f0760b0e2cf84453 -H "Content-Type: application/json" -d '{"user": "beau", "review": "horriblessss"}'
+    static async updateReview(reviewId, user, review) {
         try {
             const updateResponse = await reviews.updateOne(
-                {_id: ObjectId(reviewId)},
+                {_id: new ObjectId(reviewId)},
                 {$set: {user: user, review: review}}
             )
-
+            console.log("KU")
+            console.log("MongoDB Response:", updateResponse);
             return updateResponse
         } catch (e) {
             console.error(`Unable to update review: ${e}`)
@@ -56,7 +61,7 @@ export default class ReviewsDAO {
     static async deleteReview(reviewId) {
         try {
             const deleteResponse = await reviews.deleteOne({
-                _id: ObjectId(reviewId),
+                _id: new ObjectId(reviewId),
             })
 
             return deleteResponse
@@ -66,6 +71,7 @@ export default class ReviewsDAO {
         }
     }
 
+    // $ curl -X GET http://localhost:8000/api/v1/reviews/movie/12
     static async getReviewsByMovieId(movieId) {
         try {
             const cursor = await reviews.find({

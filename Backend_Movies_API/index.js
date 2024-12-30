@@ -11,15 +11,10 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-
-
-
 import app from  "./server.js"
 import mongodb from "mongodb"
-import ReviewsDAO from "./dao/reviewsDAO.js"
+import ReviewsDAO from "./api/dao/reviewsDAO.js"
 
-
-// import { MongoClient } from "mongodb";
 
 const MongoClient = mongodb.MongoClient
 const MONGO_USERNAME = process.env["MONGO_USERNAME"];
@@ -27,10 +22,6 @@ const MONGO_PASSWORD = process.env["MONGO_PASSWORD"];
 
 console.log('Username:', MONGO_USERNAME);
 console.log('Password:', MONGO_PASSWORD);
-// const uri = 
-// `mongodb+srv://${MONGO_USERNAME}:
-// ${MONGO_PASSWORD}@cluster0.mlcfl.
-// mongodb.net/`
 
 const uri = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.mlcfl.mongodb.net/?retryWrites=true&w=majority`
 

@@ -9,7 +9,7 @@ app.use(express.json())
 
 app.use("/api/v1/reviews", reviews)
 app.use("*", (reg, res) => 
-res.status(404).json({error: "Not Found"}))
+res.status(404).json({error: "Not Found___"}))
 
 export default app
 
